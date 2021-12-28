@@ -13,213 +13,79 @@
 
 </head>
 <body>
-    
-    <div id="cards">
 
-    </div>
+    <div id="cards2" class="cards"></div>
 
-    <script>
 
-        let card = {
+<script>
+    let cardsData = [
+        {
             poster: "poster.jpg",
-            poster2: "toy4.jpg",
-            poster3: "ferd.jpg",
-            // type: "type.png",
-            // act: "action.png",
             title1: "Тайная жизнь",
             title2: "домашних животных 2",
-            title3: "История игрушек 4",
-            title4: "Приключения Вилкинса",
-            title5: "Фердинанд",
-            title6: "Побег из коровника",
             cost: 50,
-            cost2: 60,
-            cost3: 40,
-            currency: "руб.",
-            rating: 4,
-            rating2: 5,
-            rating3: 3,
-            sales: true,
-            buy: "order.png"
-
-        };
-
-        // Полная стоимость
-    let fullCost = `${card.cost},00 ${card.currency}`;  
-    let saleCost = `${Math.round(card.cost * .9)},00 ${card.currency}`;
-       
-    let fullCost2 = `${card.cost2},00 ${card.currency}`; 
-    let saleCost2 = `${Math.round(card.cost2 * .9)},00 ${card.currency}`;
-
-    let fullCost3 = `${card.cost3},00 ${card.currency}`; 
-    let saleCost3 = `${Math.round(card.cost3 * .9)},00 ${card.currency}`;
-
-    // Расчет рейтинга
-    let stars = "";
-    
-    for (i=1; i<=card.rating; i++) 
-        stars += "star ";
-        stars += "star_border";
-
-        let stars2 = "";
-    
-    for (i=1; i<=card.rating2; i++) 
-        stars2 += "star ";
-        // stars2 += "star_border";
-
-        let stars3 = "";
-    
-    for (i=1; i<=card.rating3; i++) 
-        stars3 += "star ";
-        stars3 += "star_border" + "star_border";
-
-        // console.log(stars);
-
-        // Расчет акции
-        let sale = "", alpha = "0";
-        if (card.sales) {
-            sale = `
-            <div>${saleCost}</div>
-            <div>${fullCost}</div>
-           `; 
-           alpha = "1";
-            }
-           else {
-            sale = `<div>${fullCost}</div>`;
-            alpha = "0"; 
-           }
-
-           let sale2 = "", alpha2 = "";
-        if (card.sales) {
-            sale2 = `
-            <div>${saleCost2}</div>
-            <div>${fullCost2}</div>
-           `; 
-           alpha2 = "1";
-            }
-           else {
-            sale2 = `<div>${fullCost2}</div>`;
-            alpha2 = "0"; 
-           }
-
-           let sale3 = "", alpha3 = "0";
-        if (card.sales) {
-            sale3 = `
-            <div>${saleCost3}</div>
-            <div>${fullCost3}</div>
-           `; 
-           alpha3 = "1";
-            }
-           else {
-            sale3 = `<div>${fullCost3}</div>`;
-            alpha3 = "0"; 
-           }
+            rating: 4.5,
+        },
+        {
+            poster: "toy4.jpg",
+            title1: "История игрушек 4",
+            title2: "Приключения Вилкинса",
+            cost: 60,
+            rating:5.5,
+        },
+        {
+            poster: "ferd.jpg",
+            title1: "Фердинанд",
+            title2: "Побег из коровника",
+            cost: 40,
+            rating: 3.5,
+        },
+                
+    ];
 
 
-        
-
-// <div>${saleCost}</div>
-// <div>${fullCost}</div>  
-
-
-        // вывод карточки
-
+    let cardsOptions = {
+        currency: "руб.",
+        sale: true,
+        buy: "order.png",
+        type: "type.png",
+        act: "action.png",
+    };
+    cardsData.forEach(card => {
+        const fullCost = `${card.cost},00 ${cardsOptions.currency}`;
+        const saleCost = `${Math.round(card.cost * .9)},00 ${cardsOptions.currency}`;
+        let stars = "";
+        for (i = 1; i <= card.rating; i++) {
+            stars += "star ";
+        }
+        for (j = 5; j > card.rating; j--) {
+            stars += "star_border ";
+        }
+        stars = stars.slice(0, stars.length - 1);
         let s = `
-        <div id="cards">
-
-<div class="card">
-
-<div class="poster">
-<img src="images/${card.poster}" alt="">
-<img style="opacity: ${alpha}" src="images/${card.act}" alt="">
-<img src="images/${card.type}" alt="">  
-</div>
-
-<div class="title">
-<div>${card.title1}</div>
-<div>${card.title2}</div>
-</div>
-
-<div class="price">
-   ${sale}
-</div>
-
-<div class="rank">
-<span class="material-icons">
-${stars}
-</span>
-</div>
-
-<div class="buy">
-<img src="images/${card.buy}" alt="">
-</div>
-
-</div>
-<div id="cards">
-
-<div class="card2">
-
-<div class="poster">
-<img src="images/${card.poster2}" alt="">
-<img style="opacity: ${alpha2}" src="images/${card.act}" alt="">
-<img src="images/${card.type}" alt="">  
-</div>
-
-<div class="title">
-<div>${card.title3}</div>
-<div>${card.title4}</div>
-</div>
-
-<div class="price">
-   ${sale2}
-</div>
-
-<div class="rank">
-<span class="material-icons">
-${stars2}
-</span>
-</div>
-
-<div class="buy">
-<img src="images/${card.buy}" alt="">
-</div>
-
-</div>
-<div id="cards3">
-
-<div class="card">
-
-<div class="poster">
-<img src="images/${card.poster3}" alt="">
-<img style="opacity: ${alpha3}" src="images/${card.act}" alt="">
-<img src="images/${card.type}" alt="">  
-</div>
-
-<div class="title">
-<div>${card.title5}</div>
-<div>${card.title6}</div>
-</div>
-
-<div class="price">
-   ${sale3}
-</div>
-
-<div class="rank">
-<span class="material-icons">
-${stars3}
-</span>
-</div>
-
-<div class="buy">
-<img src="images/${card.buy}" alt="">
-</div>
-
-</div>
-        `;
-
-        cards.innerHTML = s;
-
-    </script>
-
+        <div class="card">
+            <div class="poster">
+                <img src="images/${card.poster}" alt="">  
+            </div>
+            <div class="title">
+                <div>${card.title1}</div>
+                <div>${card.title2}</div>
+            </div>
+            <div class="price">
+                <div>${cardsOptions.sale ? saleCost : 0}</div>
+            <div>${fullCost}</div>
+            </div>
+            <div class="rank">
+                <span class="material-icons">
+                    ${stars}
+                </span>
+            </div>
+            <div class="buy">
+                <img src="images/${cardsOptions.buy}" alt="">
+            </div>
+        </div>`;
+        cards2.innerHTML += s;
+    });
+</script>
 </body>
 </html>
